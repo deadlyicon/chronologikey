@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Chronologikey::VERSION
   spec.authors       = ["Jared Grippe"]
   spec.email         = ["jared@deadlyicon.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{generated keys based on a shared secret and the current time}
+  spec.summary       = %q{generated keys based on a shared secret and the current time}
   spec.homepage      = ""
   spec.license       = "MIT"
 

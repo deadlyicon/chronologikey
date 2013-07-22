@@ -1,6 +1,6 @@
 # Chronologikey
 
-TODO: Write a gem description
+generated keys based on a shared secret and the current time
 
 ## Installation
 
@@ -18,7 +18,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+  generate a secret
+
+    secret = Chronologikey.generate_secret
+
+  generate an encrypted token based on the current time
+
+    token = Chronologikey.generate(secret)
+
+  validate that token somewhere else
+
+    Chronologikey.validate(secret, token) # => Boolean
+
+
 
 ## Contributing
 
