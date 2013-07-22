@@ -13,10 +13,10 @@ module Chronologikey
     crypt(:encrypt, secret, now.to_i.to_s)
   end
 
-  def self.validate secret, key, threshold=120
-    time = crypt(:decrypt, secret, key)
+  def self.validate secret, token, tolerance=120
+    time = crypt(:decrypt, secret, token)
     distance = Time.now - Time.at(time.to_i)
-    distance.abs < threshold
+    distance.abs < tolerance
   rescue OpenSSL::Cipher::CipherError, TypeError
     false
   end
@@ -25,7 +25,10 @@ module Chronologikey
     cipher = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
     cipher.send(method)
     cipher.pkcs5_keyivgen(secret)
-    cipher.update(value) + cipher.final
+    value = Base64.decode64(value) if method == :decrypt
+    value = cipher.update(value) + cipher.final
+    value = Base64.encode64(value) if method == :encrypt
+    value
   end
 
 end
